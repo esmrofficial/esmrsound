@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E~SMR | AIが奏でる、癒しの音世界 – Official Portal</title>
+  <meta name="description" content="E~SMRは、AIが生み出すASMRの世界。やさしい自然と光の表現で、心ほどける体験をお届けします。Veo3向けのプロンプトジェネレーターも無料公開。" />
+  <meta name="theme-color" content="#6fd3c2" />
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="E~SMR" />
+  <meta property="og:title" content="E~SMR | AIが奏でる、癒しの音世界" />
+  <meta property="og:description" content="AI × ASMR。やわらかな森と光の表現で、リラックスできる音世界へ。Veo3用プロンプトもワンクリック生成。" />
+  <meta property="og:image" content="./ogp.jpg" />
+  <meta property="og:url" content="https://yourname.github.io/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    :root{
+      --bg1:#effaf8; --bg2:#eaf7ff; --ink:#12201d; --muted:#305e57;
+      --brand:#2fbfa3; --brand2:#6ad3c3; --gold:#f6c96a; --line:#d7ece7;
+      --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans JP",sans-serif;color:var(--ink);background:linear-gradient(160deg,var(--bg1),var(--bg2)) fixed}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.8);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line)}
+    .nav{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:12px 16px}
+    .logo{font-weight:900;letter-spacing:.5px;color:var(--brand)}
+    .spacer{flex:1}
+    .nav a.btn{display:inline-block;padding:10px 14px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#08332e;font-weight:700;box-shadow:0 8px 18px rgba(47,191,163,.25)}
+
+    /* Hero */
+    .hero{position:relative;overflow:hidden}
+    .hero .inner{max-width:1080px;margin:0 auto;padding:84px 16px 80px;display:grid;grid-template-columns:1.2fr 1fr;gap:24px}
+    @media (max-width:900px){.hero .inner{grid-template-columns:1fr;padding:64px 16px}}
+    .title{font-size:clamp(28px,4.8vw,46px);line-height:1.15;margin:0 0 10px}
+    .lead{color:var(--muted);font-size:clamp(16px,2.4vw,18px)}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{cursor:pointer;border:none;border-radius:12px;padding:14px 20px;font-weight:800;letter-spacing:.02em}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#072927}
+    .btn.ghost{background:#fff;color:var(--brand);border:2px solid var(--brand)}
+
+    /* Animated light streaks background (Bタイプ) */
+    .streaks{position:absolute;inset:0;z-index:-1}
+    canvas{width:100%;height:100%;display:block;opacity:.85;mix-blend-mode:screen}
+
+    /* Sections */
+    section{max-width:1080px;margin:0 auto;padding:48px 16px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media (max-width:900px){.cards{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 12px 26px rgba(0,0,0,.06)}
+    .card h3{margin:2px 0 8px}
+
+    .yt{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,#fff,#f7fffd);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .yt a{display:inline-block}
+
+    footer{margin-top:30px;border-top:1px solid var(--line);background:#fbfffe}
+    .foot{max-width:1080px;margin:0 auto;padding:14px 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:#456}
+    .copy{margin-left:auto}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="logo">E~SMR</div>
+      <a href="#features">特長</a>
+      <a href="#tool">プロンプトツール</a>
+      <a href="#youtube">YouTube</a>
+      <div class="spacer"></div>
+      <a class="btn" href="#tool">今すぐ作る</a>
+    </nav>
+  </header>
+
+  <section class="hero" aria-label="Hero">
+    <div class="streaks"><canvas id="streakCanvas" aria-hidden="true"></canvas></div>
+    <div class="inner">
+      <div>
+        <h1 class="title">AIが奏でる、癒しの音世界へ — <span style="color:var(--brand)">E~SMR</span></h1>
+        <p class="lead">Veo3向けのASMRプロンプトを、ワンクリックで。森の光の筋のように、静かに、やさしく、心へ届く映像体験を。</p>
+        <div class="cta">
+          <a class="btn primary" href="#tool">✨ プロンプトを作る</a>
+          <a class="btn ghost" href="https://www.youtube.com/@asmr_japaneese" target="_blank" rel="noopener">🎥 チャンネルを見る</a>
+        </div>
+      </div>
+      <div class="card" style="align-self:center">
+        <h3>今日のおすすめ</h3>
+        <ul style="margin:8px 0 0 16px;line-height:1.8">
+          <li>行動：切る（スローモーション）</li>
+          <li>素材：スイカ／トマト</li>
+          <li>道具：包丁（近接マイク）</li>
+        </ul>
+        <p style="color:#456;margin:10px 0 0">※ 下のツールで自由入力もOK。日英プロンプトを同時生成します。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <h2 style="margin:0 0 14px">🌿 特長</h2>
+    <div class="cards">
+      <div class="card"><h3>かんたん操作</h3><p>行動・素材・道具を選ぶ（または自由入力）だけ。Veo3に最適化した日本語／英語プロンプトを自動で生成します。</p></div>
+      <div class="card"><h3>ASMRに最適化</h3><p>「BGMなし・自然音・近接マイク」など、ASMRで重要な語彙を自動付与（オプション）。</p></div>
+      <div class="card"><h3>ブランド調のUI</h3><p>明るい森のトーンに、光の筋アニメーション。E~SMRらしい穏やかな世界観を表現します。</p></div>
+    </div>
+  </section>
+
+  <section id="tool">
+    <h2 style="margin:0 0 14px">🎬 プロンプトジェネレーター</h2>
+    <div class="cards">
+      <div class="card">
+        <label>行動（Action）</label>
+        <select id="actionSel"><option value="">選択</option><option>切る</option><option>潰す</option><option>落とす</option><option>こねる</option><option>壁にぶつける</option></select>
+        <input id="actionIn" type="text" placeholder="自由入力（例：叩く、混ぜる）」 style="margin-top:8px" />
+      </div>
+      <div class="card">
+        <label>素材（Material）</label>
+        <select id="materialSel"><option value="">選択</option><option>トマト</option><option>きゅうり</option><option>スイカ</option><option>アジ</option><option>マグロ</option></select>
+        <input id="materialIn" type="text" placeholder="自由入力（例：氷、卵、ガラスなど）」 style="margin-top:8px" />
+      </div>
+      <div class="card">
+        <label>道具（Tool）</label>
+        <select id="toolSel"><option value="">選択</option><option>包丁</option><option>ノコギリ</option><option>手</option><option>ハンマー</option></select>
+        <input id="toolIn" type="text" placeholder="自由入力（例：スプーン、ペンチなど）」 style="margin-top:8px" />
+      </div>
+      <div class="card">
+        <label><input type="checkbox" id="asmr" /> ASMR表現を自動強化（推奨語彙を追加）</label>
+        <p style="color:#456;margin:6px 0 0">近接マイク・自然音・BGMなし等を自動追記します。</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
+      <button class="btn primary" onclick="gen()">✨ プロンプト生成</button>
+      <button class="btn ghost" onclick="clr()">リセット</button>
+    </div>
+
+    <pre id="out" style="display:none;margin-top:16px;background:#fbfffe;border:1px dashed var(--brand);padding:16px;border-radius:12px"></pre>
+  </section>
+
+  <section id="youtube">
+    <h2 style="margin:0 0 14px">🎥 YouTube</h2>
+    <div class="yt">
+      <div style="flex:1">
+        <p style="margin:0 0 6px">E~SMR ASMR Channel</p>
+        <a class="btn primary" href="https://www.youtube.com/@asmr_japaneese" target="_blank" rel="noopener">チャンネルへ</a>
+      </div>
+      <div style="font-size:14px;color:#456">AIが奏でる、やさしい音と光の世界へ。</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <div>© 2025 <strong>E~SMR</strong> – Designed for AI-based ASMR Creation</div>
+      <div class="copy"><a href="#top">Page Top ↑</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // ---- Prompt Generator (simple) ----
+    const pick = (sel, inp)=> (document.getElementById(inp).value.trim() || document.getElementById(sel).value.trim());
+    function gen(){
+      const action = pick('actionSel','actionIn');
+      const material = pick('materialSel','materialIn');
+      const tool = pick('toolSel','toolIn');
+      const asmr = document.getElementById('asmr').checked;
+      if(!action || !material || !tool){alert('行動・素材・道具を入力してください');return}
+      const jx = [];
+      jx.push(`${tool}で${material}を${action}映像`);
+      jx.push('音にフォーカス・BGMなし');
+      if(asmr) jx.push('近接マイクのASMR質感');
+      jx.push('マクロ表現、浅い被写界深度、リアルな質感');
+      const jp = jx.join('、') + '。';
+      const ex = [];
+      ex.push(`Close-up cinematic shot of ${action} ${material} using a ${tool}`);
+      ex.push('focus on natural sound, no background music');
+      if(asmr) ex.push('realistic close-mic ASMR texture');
+      ex.push('macro detail, shallow depth of field, ultra-realistic textures');
+      const en = ex.join(', ') + '.';
+      const out = document.getElementById('out');
+      out.style.display='block';
+      out.textContent = `🈯 日本語プロンプト\n${jp}\n\n🌍 English Prompt\n${en}`;
+      window.location.hash = '#out';
+    }
+    function clr(){
+      ['actionSel','materialSel','toolSel','asmr','actionIn','materialIn','toolIn'].forEach(id=>{const el=document.getElementById(id); if(el.type==='checkbox'){el.checked=false}else{el.value=''}});
+      document.getElementById('out').style.display='none';
+    }
+
+    // ---- Light Streaks Canvas (Bタイプ：動きのある光の筋) ----
+    const c = document.getElementById('streakCanvas');
+    const ctx = c.getContext('2d');
+    let w,h,pxRatio;
+    function resize(){
+      pxRatio = window.devicePixelRatio||1; w = c.clientWidth*pxRatio; h = c.clientHeight*pxRatio; c.width=w; c.height=h;
+    }
+    resize(); window.addEventListener('resize', resize);
+
+    const beams = Array.from({length:18}).map(()=>({
+      x: Math.random()*1.2-0.1, // 0..1 in relative space
+      y: Math.random()*1.2-0.1,
+      vx: (0.001 + Math.random()*0.003) * (Math.random()<.5?1:-1),
+      vy: (0.001 + Math.random()*0.003),
+      w:  120 + Math.random()*220,
+      a:  0.05 + Math.random()*0.12
+    }));
+
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      // subtle gradient background glaze
+      const g = ctx.createLinearGradient(0,0,w,h);
+      g.addColorStop(0,'rgba(111,211,194,.15)');
+      g.addColorStop(1,'rgba(102,179,255,.12)');
+      ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
+
+      beams.forEach(b=>{
+        b.x += b.vx; b.y += b.vy;
+        if(b.y>1.2 || b.x<-0.2 || b.x>1.2){ b.x=Math.random()*1.2-0.1; b.y=-0.1; }
+        const cx = b.x*w, cy = b.y*h;
+        const grad = ctx.createLinearGradient(cx- b.w, cy- b.w, cx+ b.w, cy+ b.w);
+        grad.addColorStop(0, 'rgba(143,255,236,0)');
+        grad.addColorStop(.45, 'rgba(143,255,236,.22)');
+        grad.addColorStop(.5, 'rgba(246,201,106,.35)');
+        grad.addColorStop(.55, 'rgba(143,255,236,.22)');
+        grad.addColorStop(1, 'rgba(143,255,236,0)');
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.strokeStyle = grad; ctx.lineWidth = 3*pxRatio; ctx.beginPath();
+        ctx.moveTo(cx - b.w, cy - b.w);
+        ctx.lineTo(cx + b.w, cy + b.w);
+        ctx.stroke();
+        ctx.globalCompositeOperation = 'source-over';
+        // soft glow
+        ctx.fillStyle = 'rgba(111,211,194,'+b.a+')';
+        ctx.beginPath(); ctx.arc(cx,cy, 14*pxRatio, 0, Math.PI*2); ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>
