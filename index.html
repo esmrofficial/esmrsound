@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E~SMR | Official Portal v6.1 – YouTube Hashtag Edition</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="E~SMR v6.1: AI-generated ASMR for Veo3 with auto JP/EN titles, descriptions, and hashtags." />
+  <meta name="theme-color" content="#6fd3c2" />
+  <style>
+    :root{
+      --bg1:#effaf8; --bg2:#eaf7ff; --ink:#12201d; --muted:#305e57;
+      --brand:#2fbfa3; --brand2:#6ad3c3; --line:#d7ece7; --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans JP",sans-serif;color:var(--ink);background:linear-gradient(160deg,var(--bg1),var(--bg2)) fixed}
+    header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.85);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line)}
+    .nav{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:10px 16px}
+    .nav a.btn{margin-left:auto;display:inline-block;padding:10px 14px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#08332e;font-weight:700;box-shadow:0 8px 18px rgba(47,191,163,.25)}
+    .hero .inner{max-width:1080px;margin:0 auto;padding:48px 16px;text-align:center}
+    .logoWrap img{width:240px;max-width:70vw;height:auto;animation:logoIn 1.2s ease forwards .2s;filter:drop-shadow(0 6px 18px rgba(0,0,0,.12))}
+    @keyframes logoIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .title{font-size:clamp(26px,4.8vw,42px);margin:10px 0 6px}
+    .lead{color:var(--muted);font-size:clamp(15px,2.4vw,18px);margin:0}
+    .btn{cursor:pointer;border:none;border-radius:12px;padding:12px 18px;font-weight:800;letter-spacing:.02em}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#072927;box-shadow:0 8px 18px rgba(47,191,163,.25)}
+    section{max-width:1080px;margin:0 auto;padding:22px 16px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 12px 26px rgba(0,0,0,.06)}
+    label{font-weight:600;color:var(--muted);display:block;margin-bottom:6px}
+    select,input[type=text]{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:14px}
+    textarea.out{width:100%;min-height:90px;padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff;resize:vertical}
+    .outWrap{margin-top:16px;display:grid;gap:12px}
+    .outHead{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+    .outTitle{font-weight:700;color:#175d53}
+    .copyBtn{cursor:pointer;border:none;border-radius:10px;padding:8px 10px;font-weight:700;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#072927}
+    footer{margin-top:30px;border-top:1px solid var(--line);background:#fbfffe}
+    .foot{max-width:1080px;margin:0 auto;padding:14px 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:#456}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav"><a class="btn" href="#tool">今すぐ作る</a></nav>
+  </header>
+  <section class="hero">
+    <div class="inner">
+      <div class="logoWrap"><img src="logo.jpg" alt="E~SMR ロゴ" /></div>
+      <h1 class="title">E~SMR v6.1 – YouTube対応版（ハッシュタグ付き）</h1>
+      <p class="lead">Veo3向けASMRプロンプト + YouTubeタイトル＆概要＋自動ハッシュタグ生成（JP/EN）</p>
+    </div>
+  </section>
+  <section id="tool">
+    <div class="card">
+      <label>行動（Action）</label>
+      <select id="actionSel">
+        <option value="">選択</option><option>切る</option><option>潰す</option><option>落とす</option><option>こねる</option><option>叩く</option><option>混ぜる</option><option>擦る</option>
+      </select>
+      <input id="actionIn" type="text" placeholder="自由入力" />
+    </div>
+    <div class="card">
+      <label>素材（Material）</label>
+      <select id="materialSel">
+        <option value="">選択</option><option>トマト</option><option>きゅうり</option><option>スイカ</option><option>ガラス製フルーツ</option><option>キャンドル</option><option>泡</option><option>石鹸</option><option>木製オブジェ</option><option>金属パーツ</option>
+      </select>
+      <input id="materialIn" type="text" placeholder="自由入力" />
+    </div>
+    <div class="card">
+      <label>道具（Tool）</label>
+      <select id="toolSel">
+        <option value="">選択</option><option>包丁</option><option>ハンマー</option><option>手</option><option>ミキサー</option>
+      </select>
+      <input id="toolIn" type="text" placeholder="自由入力" />
+    </div>
+    <button class="btn primary" onclick="gen()">✨ 生成</button>
+    <div id="outWrap" class="outWrap" style="display:none">
+      <div class="outHead"><div class="outTitle">🈯 日本語タイトル</div><button class="copyBtn" onclick="copyText('jpTitle')">📋コピー</button></div>
+      <textarea id="jpTitle" class="out" readonly></textarea>
+      <div class="outHead"><div class="outTitle">🌍 English Title</div><button class="copyBtn" onclick="copyText('enTitle')">📋Copy</button></div>
+      <textarea id="enTitle" class="out" readonly></textarea>
+      <div class="outHead"><div class="outTitle">🈯 日本語概要欄</div><button class="copyBtn" onclick="copyText('jpDesc')">📋コピー</button></div>
+      <textarea id="jpDesc" class="out" readonly></textarea>
+      <div class="outHead"><div class="outTitle">🌍 English Description</div><button class="copyBtn" onclick="copyText('enDesc')">📋Copy</button></div>
+      <textarea id="enDesc" class="out" readonly></textarea>
+      <div class="outHead"><div class="outTitle">#️⃣ Hashtags</div><button class="copyBtn" onclick="copyText('tags')">📋Copy</button></div>
+      <textarea id="tags" class="out" readonly></textarea>
+    </div>
+  </section>
+  <footer>
+    <div class="foot"><strong>E~SMR v6.1 ©2025 – Created by hot-road</strong></div>
+  </footer>
+  <script>
+    const dict={ "切る":"cut","潰す":"crush","落とす":"drop","こねる":"knead","叩く":"hit","混ぜる":"mix","擦る":"rub",
+      "トマト":"tomato","きゅうり":"cucumber","スイカ":"watermelon","ガラス製フルーツ":"glass fruit","キャンドル":"candle","泡":"foam","石鹸":"soap","木製オブジェ":"wooden object","金属パーツ":"metal parts",
+      "包丁":"kitchen knife","ハンマー":"hammer","手":"hand","ミキサー":"blender"};
+    const pick=(s,i)=>document.getElementById(i).value.trim()||document.getElementById(s).value.trim();
+    function toEN(j){return dict[j]||j;}
+    function gen(){
+      const a=pick('actionSel','actionIn'),m=pick('materialSel','materialIn'),t=pick('toolSel','toolIn');
+      if(!a||!m||!t){alert('行動・素材・道具を入力してください');return;}
+      const aEN=toEN(a),mEN=toEN(m),tEN=toEN(t);
+      const jpT=`${m}を${t}で${a}音｜ASMR`;
+      const enT=`ASMR | ${aEN.charAt(0).toUpperCase()+aEN.slice(1)} ${mEN} with a ${tEN}`;
+      const jpD=`${m}を${t}で${a}映像。光と音が織りなす癒しのASMR体験をお楽しみください。`;
+      const enD=`ASMR video of ${aEN} ${mEN} with a ${tEN}. Enjoy the soothing harmony of sound and light.`;
+      const tags=`#ASMR #Esmr #${aEN.replace(/ /g,"")} #${mEN.replace(/ /g,"")} #RelaxingSounds #Satisfying #Veo3`;
+      document.getElementById('outWrap').style.display='grid';
+      document.getElementById('jpTitle').value=jpT;
+      document.getElementById('enTitle').value=enT;
+      document.getElementById('jpDesc').value=jpD;
+      document.getElementById('enDesc').value=enD;
+      document.getElementById('tags').value=tags;
+    }
+    async function copyText(id){
+      const el=document.getElementById(id);
+      try{await navigator.clipboard.writeText(el.value);}catch(e){alert('コピー失敗');}
+    }
+  </script>
+</body>
+</html>
