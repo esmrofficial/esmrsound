@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E~SMR | Official Portal v6.2 – Veo3 + YouTube (JP/EN)</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="E~SMR v6.2: Veo3-ready ASMR prompts with JP/EN titles, descriptions, hashtags. Material × Item selection supported." />
+  <meta name="theme-color" content="#6fd3c2" />
+  <style>
+    :root{
+      --bg1:#effaf8; --bg2:#eaf7ff; --ink:#12201d; --muted:#305e57;
+      --brand:#2fbfa3; --brand2:#6ad3c3; --line:#d7ece7; --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans JP",sans-serif;color:var(--ink);background:linear-gradient(160deg,var(--bg1),var(--bg2)) fixed}
+    header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.85);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line)}
+    .nav{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:10px 16px}
+    .nav a.btn{margin-left:auto;display:inline-block;padding:10px 14px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#08332e;font-weight:700;box-shadow:0 8px 18px rgba(47,191,163,.25)}
+    section{max-width:1080px;margin:0 auto;padding:22px 16px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 12px 26px rgba(0,0,0,.06);margin-bottom:12px}
+    label{font-weight:600;color:var(--muted);display:block;margin-bottom:6px}
+    select,input[type=text]{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:14px}
+    .row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    @media (max-width:900px){.row{grid-template-columns:1fr}}
+    .opt{margin-top:10px}
+    .btn{cursor:pointer;border:none;border-radius:12px;padding:12px 18px;font-weight:800;letter-spacing:.02em}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#072927;box-shadow:0 8px 18px rgba(47,191,163,.25)}
+    .outWrap{margin-top:16px;display:grid;gap:12px}
+    .outHead{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+    .outTitle{font-weight:700;color:#175d53}
+    textarea.out{width:100%;min-height:100px;padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff;resize:vertical;line-height:1.6;overflow-wrap:anywhere;white-space:pre-wrap;font-family:ui-monospace, SFMono-Regular, Menlo, monospace}
+    .copyBtn{cursor:pointer;border:none;border-radius:10px;padding:8px 10px;font-weight:700;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#072927}
+    footer{margin-top:30px;border-top:1px solid var(--line);background:#fbfffe}
+    .foot{max-width:1080px;margin:0 auto;padding:14px 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:#456}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div style="font-weight:800;color:#155d52">E~SMR v6.2</div>
+      <a class="btn" href="#tool">今すぐ作る</a>
+    </nav>
+  </header>
+
+  <section id="tool">
+    <h1 style="margin:0 0 10px">🎬 Veo3用 ASMR プロンプトジェネレーター（JP/EN）</h1>
+    <div class="row">
+      <div class="card">
+        <label>行動（Action）</label>
+        <select id="actionSel">
+          <option value="">選択</option>
+          <option>切る</option><option>潰す</option><option>落とす</option>
+          <option>こねる</option><option>叩く</option><option>混ぜる</option><option>擦る</option>
+        </select>
+        <input id="actionIn" type="text" placeholder="自由入力（例：細かく刻む、軽く叩く）" class="opt" />
+      </div>
+
+      <div class="card">
+        <label>材質（Material Category）</label>
+        <select id="matCatSel">
+          <option value="">選択</option>
+          <option>ガラス</option><option>木製</option><option>石</option>
+          <option>溶岩</option><option>金属</option><option>泡</option>
+        </select>
+        <input id="matCatIn" type="text" placeholder="自由入力（例：紙、プラスチック）" class="opt" />
+      </div>
+
+      <div class="card">
+        <label>アイテム（Item）</label>
+        <select id="itemSel">
+          <option value="">選択</option>
+          <option>ぶどう</option><option>スイカ</option><option>リンゴ</option>
+          <option>オレンジ</option><option>たまご</option>
+        </select>
+        <input id="itemIn" type="text" placeholder="自由入力（例：トマト、キウイ）" class="opt" />
+      </div>
+
+      <div class="card">
+        <label>道具（Tool）</label>
+        <select id="toolSel">
+          <option value="">選択</option>
+          <option>包丁</option><option>ハンマー</option><option>手</option><option>ミキサー</option>
+        </select>
+        <input id="toolIn" type="text" placeholder="自由入力（例：めん棒、ノコギリ）" class="opt" />
+      </div>
+    </div>
+
+    <div class="card">
+      <label style="display:flex;align-items:center;gap:8px">
+        <input type="checkbox" id="asmr" /> ASMR表現を自動強化（近接マイク／BGMなし などを自動付与）
+      </label>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+        <button class="btn primary" onclick="gen()">✨ 生成</button>
+        <button class="btn" onclick="clr()">リセット</button>
+      </div>
+    </div>
+
+    <div id="outWrap" class="outWrap" style="display:none">
+      <!-- Veo3 JP -->
+      <div class="card">
+        <div class="outHead"><div class="outTitle">🈯 Veo3 日本語プロンプト</div><button class="copyBtn" onclick="copyText('jpOut')">📋コピー</button></div>
+        <textarea id="jpOut" class="out" readonly></textarea>
+      </div>
+      <!-- Veo3 EN -->
+      <div class="card">
+        <div class="outHead"><div class="outTitle">🌍 Veo3 English Prompt</div><button class="copyBtn" onclick="copyText('enOut')">📋Copy</button></div>
+        <textarea id="enOut" class="out" readonly></textarea>
+      </div>
+      <!-- Titles -->
+      <div class="card">
+        <div class="outHead"><div class="outTitle">🈯 YouTube 日本語タイトル</div><button class="copyBtn" onclick="copyText('jpTitle')">📋コピー</button></div>
+        <textarea id="jpTitle" class="out" readonly></textarea>
+      </div>
+      <div class="card">
+        <div class="outHead"><div class="outTitle">🌍 YouTube English Title</div><button class="copyBtn" onclick="copyText('enTitle')">📋Copy</button></div>
+        <textarea id="enTitle" class="out" readonly></textarea>
+      </div>
+      <!-- Descriptions -->
+      <div class="card">
+        <div class="outHead"><div class="outTitle">🈯 YouTube 日本語概要欄</div><button class="copyBtn" onclick="copyText('jpDesc')">📋コピー</button></div>
+        <textarea id="jpDesc" class="out" readonly></textarea>
+      </div>
+      <div class="card">
+        <div class="outHead"><div class="outTitle">🌍 YouTube English Description</div><button class="copyBtn" onclick="copyText('enDesc')">📋Copy</button></div>
+        <textarea id="enDesc" class="out" readonly></textarea>
+      </div>
+      <!-- Hashtags -->
+      <div class="card">
+        <div class="outHead"><div class="outTitle">#️⃣ Hashtags (EN)</div><button class="copyBtn" onclick="copyText('tags')">📋Copy</button></div>
+        <textarea id="tags" class="out" readonly></textarea>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot"><strong>E~SMR v6.2 ©2025 – Created by hot-road</strong></div>
+  </footer>
+
+  <script>
+    // Mapping dictionaries
+    const actionEN = {
+      "切る":"slice","潰す":"crush","落とす":"drop","こねる":"knead","叩く":"pound","混ぜる":"mix","擦る":"rub",
+      "細かく刻む":"finely chop","軽く叩く":"lightly tap"
+    };
+    const matEN = {
+      "ガラス":"glass","木製":"wooden","石":"stone","溶岩":"lava","金属":"metal","泡":"foam"
+    };
+    const itemEN = {
+      "ぶどう":"grape","スイカ":"watermelon","リンゴ":"apple","オレンジ":"orange","たまご":"egg",
+      "トマト":"tomato","キウイ":"kiwi"
+    };
+    const toolEN = {
+      "包丁":"kitchen knife","ハンマー":"hammer","手":"hand","ミキサー":"blender","めん棒":"rolling pin","ノコギリ":"saw"
+    };
+
+    const pick=(s,i)=>document.getElementById(i).value.trim()||document.getElementById(s).value.trim();
+
+    function enActionVerb(a){
+      const base = actionEN[a] || a;
+      // use gerund for prompt line
+      if(/(slice|crush|drop|knead|pound|mix|rub|chop|tap)$/i.test(base)){
+        return base + (base.endsWith('e') ? 'ing' : 'ing');
+      }
+      return base;
+    }
+    function enAdjFromMat(m){
+      // glass -> glass, wooden -> wooden, stone -> stone, lava -> lava (as adj), metal -> metal, foam -> foam
+      const adj = matEN[m] || m;
+      // map simple cases to adjective phrase
+      if(adj === 'glass') return 'glass';
+      if(adj === 'wooden') return 'wooden';
+      if(adj === 'stone') return 'stone';
+      if(adj === 'lava') return 'lava';
+      if(adj === 'metal') return 'metal';
+      if(adj === 'foam') return 'foam';
+      return adj;
+    }
+    function pluralize(n){
+      // simple pluralization
+      if(/(watermelon|foam|lava|metal)/i.test(n)) return n; // typically uncountable or same form
+      if(/(s|x|z|ch|sh)$/i.test(n)) return n + 'es';
+      if(/[^aeiou]y$/i.test(n)) return n.replace(/y$/,'ies');
+      return n + 's';
+    }
+    function buildEnNoun(mCat, item){
+      const adj = enAdjFromMat(mCat);
+      const core = itemEN[item] || item;
+      // phrase like "glass grapes"
+      const noun = pluralize(core);
+      return (adj ? (adj + ' ' + noun) : noun).trim();
+    }
+    function buildJpNoun(mCat, item){
+      const cat = mCat || '';
+      const it = item || '';
+      let connector = 'の';
+      // 木製や金属などはそのまま「木製のX」「金属のX」
+      if(cat.endsWith('製') || cat.match(/(ガラス|木|金属|石|溶岩|泡)/)) connector = 'の';
+      return (cat ? (cat + connector + it) : it);
+    }
+
+    function gen(){
+      const aJP=pick('actionSel','actionIn');
+      const matCatJP=pick('matCatSel','matCatIn');
+      const itemJP=pick('itemSel','itemIn');
+      const toolJP=pick('toolSel','toolIn');
+      const asmr=document.getElementById('asmr').checked;
+
+      if(!aJP||!matCatJP||!itemJP||!toolJP){
+        alert('行動・材質・アイテム・道具を入力してください'); return;
+      }
+
+      // JP noun phrase
+      const jpNoun = buildJpNoun(matCatJP, itemJP);
+
+      // EN mappings
+      const aEN = actionEN[aJP] || aJP;
+      const tEN = toolEN[toolJP] || toolJP;
+      const enGer = enActionVerb(aJP); // gerund for prompt
+      const enNoun = buildEnNoun(matCatJP, itemJP); // e.g., glass grapes
+
+      // -------- JP/EN Veo3 Prompts --------
+      const jpParts = [`${toolJP}で${jpNoun}を${aJP}映像`,`音にフォーカス・BGMなし`];
+      if(asmr) jpParts.push('近接マイクのASMR質感');
+      jpParts.push('マクロ表現、浅い被写界深度、リアルな質感');
+      const jpPrompt = jpParts.join('、') + '。';
+
+      const enParts = [`Close-up cinematic shot of ${enGer} ${enNoun} with a ${tEN}`,`focus on natural sound, no background music`];
+      if(asmr) enParts.push('realistic close-mic ASMR texture');
+      enParts.push('macro detail, shallow depth of field, ultra-realistic textures');
+      const enPrompt = enParts.join(', ') + '.';
+
+      // -------- Titles --------
+      const jpTitle = `${jpNoun}を${toolJP}で${aJP}音｜ASMR`;
+      const enTitle = `ASMR | ${aEN.charAt(0).toUpperCase()+aEN.slice(1)} ${enNoun} with a ${tEN}`;
+
+      // -------- Descriptions --------
+      const jpDesc = `${toolJP}で${jpNoun}を${aJP}映像。光と音のきらめきを静かに楽しむASMR体験。BGMなし・自然音重視。`;
+      const enDesc = `ASMR video of ${aEN} ${enNoun} with a ${tEN}. Gentle shimmering visuals and pure natural sound. No BGM, close-mic texture.`;
+
+      // -------- Hashtags (EN) --------
+      const tagAction = (aEN || aJP).toString().replace(/\s+/g,'');
+      const tagMat = (matEN[matCatJP] || matCatJP).toString().split(' ')[0];
+      const tagItem = (itemEN[itemJP] || itemJP).toString().replace(/\s+/g,'');
+      const tags = `#ASMR #Esmr #${tagAction} #${tagMat.charAt(0).toUpperCase()+tagMat.slice(1)} #${tagItem.charAt(0).toUpperCase()+tagItem.slice(1)} #Relaxing #Satisfying #Veo3`;
+
+      // write to UI
+      document.getElementById('outWrap').style.display='grid';
+      document.getElementById('jpOut').value = jpPrompt;
+      document.getElementById('enOut').value = enPrompt;
+      document.getElementById('jpTitle').value = jpTitle;
+      document.getElementById('enTitle').value = enTitle;
+      document.getElementById('jpDesc').value = jpDesc;
+      document.getElementById('enDesc').value = enDesc;
+      document.getElementById('tags').value = tags;
+    }
+
+    function clr(){
+      ['actionSel','matCatSel','itemSel','toolSel','asmr','actionIn','matCatIn','itemIn','toolIn'].forEach(id=>{
+        const el=document.getElementById(id);
+        if(el.type==='checkbox'){el.checked=false}else{el.value=''}
+      });
+      document.getElementById('outWrap').style.display='none';
+      ['jpOut','enOut','jpTitle','enTitle','jpDesc','enDesc','tags'].forEach(id=>document.getElementById(id).value='');
+    }
+
+    async function copyText(id){
+      const el=document.getElementById(id);
+      try{
+        await navigator.clipboard.writeText(el.value);
+        const btn=document.querySelector(`button[onclick="copyText('${id}')"]`);
+        const old=btn.textContent; btn.textContent='✅ Copied!'; setTimeout(()=>btn.textContent=old, 1200);
+      }catch(e){ alert('コピーに失敗しました'); }
+    }
+  </script>
+</body>
+</html>
