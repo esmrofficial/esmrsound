@@ -3,150 +3,120 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>E~SMR | Official Portal v6.3 – Veo3 + YouTube (JP/EN)</title>
+  <title>E~SMR v7 – Veo3 Prompt + Auto Filename (EN/JP)</title>
   <meta name="robots" content="noindex, nofollow" />
-  <meta name="description" content="E~SMR v6.3: Veo3-ready ASMR prompts with JP/EN titles, descriptions, hashtags. Material × Item selection supported. Logo-centered hero and glassy UI." />
+  <meta name="description" content="E~SMR v7: Generate Veo3 prompts with a descriptive English filename. Output EN prompt (with 'Save as'), JP reference, filename, title, and hashtags." />
   <meta name="theme-color" content="#6fd3c2" />
   <style>
-    :root{
-      --bg1:#effaf8; --bg2:#eaf7ff; --ink:#12201d; --muted:#2f5b55;
-      --brand:#2fbfa3; --brand2:#6ad3c3; --line:#d7ece7; --card:#ffffff;
-      --glass:rgba(255,255,255,.66);
-    }
+    :root{--bg:#f7fbfa;--ink:#13201c;--muted:#3b6b63;--line:#dbe9e5;--brand:#2fbfa3;--brand2:#6ad3c3;--card:#fff}
     *{box-sizing:border-box}
-    html,body{margin:0;height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans JP",sans-serif;color:var(--ink);background:linear-gradient(160deg,var(--bg1),var(--bg2)) fixed}
-    a{color:var(--brand);text-decoration:none}
-    a:hover{text-decoration:underline}
-    header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.85);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line)}
-    .nav{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:10px 16px}
-    .nav .ver{font-weight:800;color:#155d52}
-    .nav a.btn{margin-left:auto;display:inline-block;padding:10px 14px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#08332e;font-weight:700;box-shadow:0 8px 18px rgba(47,191,163,.25)}
-    .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
-    .streaks{position:absolute;inset:0;z-index:-1}
-    canvas{width:100%;height:100%;display:block;opacity:.9;mix-blend-mode:screen}
-    .inner{max-width:1080px;margin:0 auto;padding:48px 16px 32px;text-align:center}
-    .logoWrap{display:flex;justify-content:center;align-items:center;margin-bottom:14px}
-    .logoWrap img{width:260px;max-width:72vw;height:auto;opacity:0;animation:logoIn 1.2s ease forwards .25s;filter:drop-shadow(0 6px 18px rgba(0,0,0,.12))}
-    @keyframes logoIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-    .title{font-size:clamp(26px,4.8vw,42px);margin:8px 0 6px}
-    .lead{color:var(--muted);font-size:clamp(15px,2.4vw,18px);margin:0}
-    section.main{max-width:1080px;margin:0 auto;padding:22px 16px}
+    html,body{margin:0;height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Noto Sans JP',sans-serif;color:var(--ink);background:var(--bg)}
+    header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
+    .nav{max-width:1080px;margin:0 auto;display:flex;gap:12px;align-items:center;padding:10px 16px}
+    .ver{font-weight:800;color:#165a50}
+    .nav a.btn{margin-left:auto;display:inline-block;padding:10px 14px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#08332e;font-weight:700;box-shadow:0 8px 18px rgba(47,191,163,.25);text-decoration:none}
+    section{max-width:1080px;margin:0 auto;padding:22px 16px}
+    h1{margin:6px 0 12px}
     .row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
     @media (max-width:900px){.row{grid-template-columns:1fr}}
-    .card{background:var(--glass);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 18px 36px rgba(0,0,0,.06);backdrop-filter:blur(8px)}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 12px 24px rgba(0,0,0,.05);margin-bottom:12px}
     label{font-weight:700;color:#175d53;display:block;margin-bottom:6px}
     select,input[type=text]{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:14px}
     .opt{margin-top:10px}
-    .btn{cursor:pointer;border:none;border-radius:12px;padding:12px 18px;font-weight:800;letter-spacing:.02em;transition:transform .15s}
+    .btn{cursor:pointer;border:none;border-radius:12px;padding:12px 18px;font-weight:800;letter-spacing:.02em}
     .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#072927;box-shadow:0 8px 18px rgba(47,191,163,.25)}
-    .btn.primary:hover{transform:translateY(-1px)}
-    .btn.ghost{background:#fff;color:var(--brand);border:2px solid var(--brand)}
+    .btn.ghost{background:#fff;border:2px solid var(--brand);color:#12695d}
     .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
     .outWrap{margin-top:16px;display:grid;gap:12px}
     .outHead{display:flex;align-items:center;gap:8px;margin-bottom:6px}
     .outTitle{font-weight:800;color:#175d53}
     textarea.out{width:100%;min-height:100px;padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff;resize:vertical;line-height:1.6;overflow-wrap:anywhere;white-space:pre-wrap;font-family:ui-monospace, SFMono-Regular, Menlo, monospace}
     .copyBtn{cursor:pointer;border:none;border-radius:10px;padding:8px 10px;font-weight:700;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#072927}
-    .notice{font-size:12px;color:#597;margin-top:6px}
     footer{margin-top:30px;border-top:1px solid var(--line);background:#fbfffe}
     .foot{max-width:1080px;margin:0 auto;padding:14px 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:#456}
+    .mini{font-size:12px;color:#597}
   </style>
 </head>
 <body>
   <header>
     <nav class="nav">
-      <div class="ver">E~SMR v6.3</div>
-      <a class="btn" href="#tool">今すぐ作る</a>
+      <div class="ver">E~SMR v7</div>
+      <a class="btn" href="#tool">Create Prompt</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <div class="streaks"><canvas id="streakCanvas"></canvas></div>
-    <div class="inner">
-      <div class="logoWrap"><img src="logo.jpg" alt="E~SMR ロゴ" /></div>
-      <h1 class="title">Veo3 × ASMR Prompt Generator（JP/EN）</h1>
-      <p class="lead">材質 × アイテム × 行動 × 道具を組み合わせ、映像プロンプト・YouTube用タイトル／概要／ハッシュタグを一括生成</p>
-    </div>
-  </section>
+  <section id="tool">
+    <h1>🎬 Veo3 Prompt + Auto Filename Generator（EN/JP）</h1>
+    <p class="mini">選んで「✨生成」を押すだけ。Veo3に渡す英語プロンプト（<strong>Save the file as:</strong> 指示入り）と、JP参考文／英語ファイル名／YouTubeタイトル／ハッシュタグを自動生成します。</p>
 
-  <section id="tool" class="main">
     <div class="row">
       <div class="card">
         <label>行動（Action）</label>
         <select id="actionSel">
           <option value="">選択</option>
           <option>切る</option><option>潰す</option><option>落とす</option>
-          <option>こねる</option><option>叩く</option><option>混ぜる</option><option>擦る</option>
+          <option>こねる</option><option>叩く</option><option>混ぜる</option><option>焼く</option>
         </select>
-        <input id="actionIn" type="text" placeholder="自由入力（例：細かく刻む、軽く叩く）" class="opt" />
+        <input id="actionIn" type="text" placeholder="自由入力（例：薄くスライス、軽く叩く）" class="opt" />
       </div>
 
       <div class="card">
-        <label>材質（Material Category）</label>
-        <select id="matCatSel">
+        <label>材質（Material）</label>
+        <select id="matSel">
           <option value="">選択</option>
-          <option>ガラス</option><option>木製</option><option>石</option>
-          <option>溶岩</option><option>金属</option><option>泡</option>
+          <option>ガラス</option><option>木製</option><option>石</option><option>金属</option><option>布</option><option>溶岩</option>
         </select>
-        <input id="matCatIn" type="text" placeholder="自由入力（例：紙、プラスチック）" class="opt" />
+        <input id="matIn" type="text" placeholder="自由入力（例：紙、プラスチック）" class="opt" />
       </div>
 
       <div class="card">
         <label>アイテム（Item）</label>
         <select id="itemSel">
           <option value="">選択</option>
-          <option>ぶどう</option><option>スイカ</option><option>リンゴ</option>
-          <option>オレンジ</option><option>たまご</option>
+          <option>ぶどう</option><option>スイカ</option><option>リンゴ</option><option>トマト</option><option>きゅうり</option><option>魚</option>
         </select>
-        <input id="itemIn" type="text" placeholder="自由入力（例：トマト、キウイ）" class="opt" />
+        <input id="itemIn" type="text" placeholder="自由入力（例：サーモン、ガラス球）" class="opt" />
       </div>
 
       <div class="card">
-        <label>道具（Tool）</label>
-        <select id="toolSel">
+        <label>補足（Detail / Context）</label>
+        <select id="ctxSel">
           <option value="">選択</option>
-          <option>包丁</option><option>ハンマー</option><option>手</option><option>ミキサー</option>
+          <option>クローズアップ</option><option>テーブルの上</option><option>屋外</option><option>手で持って</option><option>暗めの照明</option>
         </select>
-        <input id="toolIn" type="text" placeholder="自由入力（例：めん棒、ノコギリ）" class="opt" />
+        <input id="ctxIn" type="text" placeholder="自由入力（例：木のテーブル、スタジオ照明、スローモーション）" class="opt" />
       </div>
     </div>
 
     <div class="card">
-      <label style="display:flex;align-items:center;gap:8px">
-        <input type="checkbox" id="asmr" /> ASMR表現を自動強化（近接マイク／BGMなし 等を自動付与）
-      </label>
+      <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="asmr" /> ASMR強化（近接マイク／BGMなし／自然音）</label>
       <div class="actions">
         <button class="btn primary" onclick="gen()">✨ 生成</button>
         <button class="btn ghost" onclick="clr()">リセット</button>
       </div>
-      <p class="notice">※ 生成後は各ブロックの「📋」からワンクリックでコピーできます。</p>
     </div>
 
     <div id="outWrap" class="outWrap" style="display:none">
       <div class="card">
-        <div class="outHead"><div class="outTitle">🈯 Veo3 日本語プロンプト</div><button class="copyBtn" onclick="copyText('jpOut')">📋 コピー</button></div>
-        <textarea id="jpOut" class="out" readonly></textarea>
+        <div class="outHead"><div class="outTitle">🗂️ Filename (EN)</div><button class="copyBtn" onclick="copyText('fname')">📋 Copy</button></div>
+        <textarea id="fname" class="out" readonly></textarea>
       </div>
+
       <div class="card">
-        <div class="outHead"><div class="outTitle">🌍 Veo3 English Prompt</div><button class="copyBtn" onclick="copyText('enOut')">📋 Copy</button></div>
-        <textarea id="enOut" class="out" readonly></textarea>
+        <div class="outHead"><div class="outTitle">🌍 Veo3 Prompt (English, includes “Save the file as”)</div><button class="copyBtn" onclick="copyText('enPrompt')">📋 Copy</button></div>
+        <textarea id="enPrompt" class="out" readonly></textarea>
       </div>
+
       <div class="card">
-        <div class="outHead"><div class="outTitle">🈯 YouTube 日本語タイトル</div><button class="copyBtn" onclick="copyText('jpTitle')">📋 コピー</button></div>
-        <textarea id="jpTitle" class="out" readonly></textarea>
+        <div class="outHead"><div class="outTitle">🈯 Veo3 プロンプト（日本語参考）</div><button class="copyBtn" onclick="copyText('jpPrompt')">📋 コピー</button></div>
+        <textarea id="jpPrompt" class="out" readonly></textarea>
       </div>
+
       <div class="card">
-        <div class="outHead"><div class="outTitle">🌍 YouTube English Title</div><button class="copyBtn" onclick="copyText('enTitle')">📋 Copy</button></div>
-        <textarea id="enTitle" class="out" readonly></textarea>
+        <div class="outHead"><div class="outTitle">🎬 YouTube Title (EN)</div><button class="copyBtn" onclick="copyText('ytTitle')">📋 Copy</button></div>
+        <textarea id="ytTitle" class="out" readonly></textarea>
       </div>
-      <div class="card">
-        <div class="outHead"><div class="outTitle">🈯 YouTube 日本語概要欄</div><button class="copyBtn" onclick="copyText('jpDesc')">📋 コピー</button></div>
-        <textarea id="jpDesc" class="out" readonly></textarea>
-      </div>
-      <div class="card">
-        <div class="outHead"><div class="outTitle">🌍 YouTube English Description</div><button class="copyBtn" onclick="copyText('enDesc')">📋 Copy</button></div>
-        <textarea id="enDesc" class="out" readonly></textarea>
-      </div>
+
       <div class="card">
         <div class="outHead"><div class="outTitle">#️⃣ Hashtags (EN)</div><button class="copyBtn" onclick="copyText('tags')">📋 Copy</button></div>
         <textarea id="tags" class="out" readonly></textarea>
@@ -155,103 +125,97 @@
   </section>
 
   <footer>
-    <div class="foot"><strong>E~SMR v6.3 ©2025 – Created by hot-road</strong></div>
+    <div class="foot"><strong>E~SMR v7 ©2025 – Created by hot-road</strong></div>
   </footer>
 
-  <script>
-    const actionEN = {
-      "切る":"slice","潰す":"crush","落とす":"drop","こねる":"knead","叩く":"pound","混ぜる":"mix","擦る":"rub",
-      "細かく刻む":"finely chop","軽く叩く":"lightly tap"
-    };
-    const matEN = {"ガラス":"glass","木製":"wooden","石":"stone","溶岩":"lava","金属":"metal","泡":"foam"};
-    const itemEN = {"ぶどう":"grape","スイカ":"watermelon","リンゴ":"apple","オレンジ":"orange","たまご":"egg","トマト":"tomato","キウイ":"kiwi"};
-    const toolEN = {"包丁":"kitchen knife","ハンマー":"hammer","手":"hand","ミキサー":"blender","めん棒":"rolling pin","ノコギリ":"saw"};
+<script>
+  const mapAction = {"切る":"cutting","潰す":"crushing","落とす":"dropping","こねる":"kneading","叩く":"pounding","混ぜる":"mixing","焼く":"grilling"};
+  const mapMat = {"ガラス":"glass","木製":"wooden","石":"stone","金属":"metal","布":"fabric","溶岩":"lava"};
+  const mapItem = {"ぶどう":"grapes","スイカ":"watermelon","リンゴ":"apple","トマト":"tomato","きゅうり":"cucumber","魚":"fish"};
+  const mapCtx = {"クローズアップ":"closeup","テーブルの上":"on table","屋外":"outdoors","手で持って":"handheld","暗めの照明":"low light"};
 
-    const pick=(s,i)=>document.getElementById(i).value.trim()||document.getElementById(s).value.trim();
-    function enActionGerund(a){const base = actionEN[a] || a;return /(slice|crush|drop|knead|pound|mix|rub|chop|tap)$/i.test(base)? base+'ing' : base;}
-    function enAdjFromMat(m){return matEN[m] || m;}
-    function pluralize(n){if(/^(watermelon|foam|lava|metal)$/i.test(n)) return n; if(/(s|x|z|ch|sh)$/i.test(n)) return n+'es'; if(/[^aeiou]y$/i.test(n)) return n.replace(/y$/,'ies'); return n+'s';}
-    function buildEnNoun(mCat, item){const adj=enAdjFromMat(mCat);const core=itemEN[item]||item||"";const noun=core?pluralize(core):"";return [adj,noun].filter(Boolean).join(' ').trim();}
-    function buildJpNoun(mCat,item){const cat=mCat||'';const it=item||'';return (cat? (cat+'の'+it): it);}
+  const pick=(sel,inId)=>document.getElementById(inId).value.trim()||document.getElementById(sel).value.trim();
+  function toEN(dict, jp){ return dict[jp] || jp; }
+  function slugify(s){
+    return s.toLowerCase()
+      .replace(/[áàäâ]/g,'a').replace(/[éèëê]/g,'e').replace(/[íìïî]/g,'i').replace(/[óòöô]/g,'o').replace(/[úùüû]/g,'u')
+      .replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'').replace(/_+/g,'_');
+  }
+  function titleCase(s){ return s.replace(/\b\w/g, c=>c.toUpperCase()); }
+  function hashTagToken(s){
+    const t = s.replace(/[^a-z0-9 ]+/gi,' ').trim().split(/\s+/).map(w=>w.charAt(0).toUpperCase()+w.slice(1).toLowerCase()).join('');
+    return t || 'ASMR';
+  }
 
-    function gen(){
-      const aJP=pick('actionSel','actionIn'), matCatJP=pick('matCatSel','matCatIn'), itemJP=pick('itemSel','itemIn'), toolJP=pick('toolSel','toolIn');
-      const asmr=document.getElementById('asmr').checked;
-      if(!aJP||!matCatJP||!itemJP||!toolJP){alert('行動・材質・アイテム・道具を入力してください');return;}
+  function gen(){
+    const aJP = pick('actionSel','actionIn');
+    const mJP = pick('matSel','matIn');
+    const iJP = pick('itemSel','itemIn');
+    const cJP = pick('ctxSel','ctxIn');
+    const asmr = document.getElementById('asmr').checked;
 
-      const jpNoun=buildJpNoun(matCatJP,itemJP), aEN=(actionEN[aJP]||aJP), enGer=enActionGerund(aJP), enNoun=buildEnNoun(matCatJP,itemJP), tEN=(toolEN[toolJP]||toolJP);
+    if(!aJP || !mJP || !iJP){ alert('行動・材質・アイテムを入力してください'); return; }
 
-      const jpParts=[`${toolJP}で${jpNoun}を${aJP}映像`,`音にフォーカス・BGMなし`]; if(asmr) jpParts.push('近接マイクのASMR質感'); jpParts.push('マクロ表現、浅い被写界深度、リアルな質感');
-      const jpPrompt=jpParts.join('、')+'。';
+    const aEN = toEN(mapAction, aJP);
+    const mEN = toEN(mapMat, mJP);
+    const iEN = toEN(mapItem, iJP);
+    const cEN = cJP ? toEN(mapCtx, cJP) : '';
 
-      const enParts=[`Close-up cinematic shot of ${enGer} ${enNoun} with a ${tEN}`,`focus on natural sound, no background music`]; if(asmr) enParts.push('realistic close-mic ASMR texture'); enParts.push('macro detail, shallow depth of field, ultra-realistic textures');
-      const enPrompt=enParts.join(', ')+'.';
+    const parts = [aEN, mEN, iEN, cEN].filter(Boolean);
+    const base = slugify(parts.join('_'));
+    const fname = base + '.mp4';
 
-      const jpTitle=`${jpNoun}を${toolJP}で${aJP}音｜ASMR`;
-      const enTitle=`ASMR | ${aEN.charAt(0).toUpperCase()+aEN.slice(1)} ${enNoun} with a ${tEN}`;
+    const baseLines = [
+      `Create a cinematic ASMR video of ${aEN} ${mEN} ${iEN}${cEN? ' ' + cEN : ''}.`,
+      `Use macro detail and natural lighting, ${asmr? 'close-mic texture, ' : ''}no background music.`,
+      `Save the file as: ${fname}`
+    ];
+    const enPrompt = baseLines.join('\n');
 
-      const jpDesc=`${toolJP}で${jpNoun}を${aJP}映像。光と音のきらめきを静かに楽しむASMR体験。BGMなし・自然音重視。`;
-      const enDesc=`ASMR video of ${aEN} ${enNoun} with a ${tEN}. Gentle shimmering visuals and pure natural sound. No BGM, close-mic texture.`;
+    const jpNoun = `${mJP}の${iJP}`;
+    const jpLines = [
+      `${jpNoun}を${aJP}ASMR映像を生成してください（${cJP||'状況指定なし'}）。`,
+      `マクロ表現・自然光・${asmr? '近接マイク・' : ''}BGMなし。`,
+      `ファイル名は「${fname}」にしてください。`
+    ];
+    const jpPrompt = jpLines.join('\n');
 
-      const tagAction=(aEN||aJP).toString().replace(/\s+/g,'');
-      const tagMat=(enAdjFromMat(matCatJP)||matCatJP).toString().split(' ')[0];
-      const tagItem=(itemEN[itemJP]||itemJP).toString().replace(/\s+/g,'');
-      const tags=`#ASMR #Esmr #${tagAction} #${tagMat.charAt(0).toUpperCase()+tagMat.slice(1)} #${tagItem.charAt(0).toUpperCase()+tagItem.slice(1)} #Relaxing #Satisfying #Veo3`;
+    const titleEN = `ASMR | ` + titleCase(`${aEN} ${mEN} ${iEN}${cEN? ' ' + cEN : ''}`.replace(/\s+/g,' ').trim());
 
-      document.getElementById('outWrap').style.display='grid';
-      document.getElementById('jpOut').value=jpPrompt;
-      document.getElementById('enOut').value=enPrompt;
-      document.getElementById('jpTitle').value=jpTitle;
-      document.getElementById('enTitle').value=enTitle;
-      document.getElementById('jpDesc').value=jpDesc;
-      document.getElementById('enDesc').value=enDesc;
-      document.getElementById('tags').value=tags;
-      location.hash='#outWrap';
-    }
+    const tags = [
+      '#ASMR','#Esmr',
+      '#'+hashTagToken(mEN),
+      '#'+hashTagToken(iEN),
+      '#'+hashTagToken(aEN),
+      cEN? '#'+hashTagToken(cEN) : '',
+      '#Relaxing','#Veo3'
+    ].filter(Boolean).join(' ');
 
-    function clr(){
-      ['actionSel','matCatSel','itemSel','toolSel','asmr','actionIn','matCatIn','itemIn','toolIn'].forEach(id=>{
-        const el=document.getElementById(id);
-        if(el.type==='checkbox'){el.checked=false}else{el.value=''}
-      });
-      document.getElementById('outWrap').style.display='none';
-      ['jpOut','enOut','jpTitle','enTitle','jpDesc','enDesc','tags'].forEach(id=>document.getElementById(id).value='');
-    }
+    document.getElementById('outWrap').style.display='grid';
+    document.getElementById('fname').value = fname;
+    document.getElementById('enPrompt').value = enPrompt;
+    document.getElementById('jpPrompt').value = jpPrompt;
+    document.getElementById('ytTitle').value = titleEN;
+    document.getElementById('tags').value = tags;
+    location.hash = '#outWrap';
+  }
 
-    async function copyText(id){
+  function clr(){
+    ['actionSel','matSel','itemSel','ctxSel','asmr','actionIn','matIn','itemIn','ctxIn'].forEach(id=>{
       const el=document.getElementById(id);
-      try{
-        await navigator.clipboard.writeText(el.value);
-        const btn=document.querySelector(`button[onclick="copyText('${id}')"]`);
-        const old=btn.textContent; btn.textContent='✅ Copied!'; setTimeout(()=>btn.textContent=old, 1200);
-      }catch(e){ alert('コピーに失敗しました'); }
-    }
-
-    // Canvas background
-    const c=document.getElementById('streakCanvas'),ctx=c.getContext('2d',{alpha:true});let w,h,p;
-    function fit(){p=Math.min(window.devicePixelRatio||1,2);w=c.clientWidth*p;h=c.clientHeight*p;c.width=w;c.height=h;}
-    function ensure(){fit();setTimeout(fit,50);} window.addEventListener('load',ensure); window.addEventListener('resize',fit);
-    const beams=Array.from({length:18}).map(()=>({x:Math.random()*1.2-0.1,y:Math.random()*1.2-0.1,vx:(0.0008+Math.random()*0.0025)*(Math.random()<.5?1:-1),vy:(0.0008+Math.random()*0.0022),w:120+Math.random()*220,a:0.05+Math.random()*0.14,t:Math.random()*Math.PI*2}));
-    function draw(){if(!w||!h){requestAnimationFrame(draw);return;}ctx.clearRect(0,0,w,h);
-      const g=ctx.createLinearGradient(0,0,w,h);g.addColorStop(0,'rgba(111,211,194,.15)');g.addColorStop(1,'rgba(102,179,255,.10)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
-      beams.forEach(b=>{b.x+=b.vx;b.y+=b.vy;b.t+=0.02;if(b.y>1.2||b.x<-0.2||b.x>1.2){b.x=Math.random()*1.2-0.1;b.y=-0.1;}const cx=b.x*w,cy=b.y*h;const wav=(Math.sin(b.t)*0.5+0.5)*0.6+0.4;
-        const grad=ctx.createLinearGradient(cx-b.w,cy-b.w,cx+b.w,cy+b.w);
-        grad.addColorStop(0,'rgba(143,255,236,0)');
-        grad.addColorStop(.40,`rgba(143,255,236,${0.18*wav})`);
-        grad.addColorStop(.50,`rgba(246,201,106,${0.32*wav})`);
-        grad.addColorStop(.60,`rgba(143,255,236,${0.18*wav})`);
-        grad.addColorStop(1,'rgba(143,255,236,0)');
-        ctx.globalCompositeOperation='lighter';
-        ctx.strokeStyle=grad;ctx.lineWidth=3*p;
-        ctx.beginPath();ctx.moveTo(cx-b.w,cy-b.w);ctx.lineTo(cx+b.w,cy+b.w);ctx.stroke();
-        ctx.globalCompositeOperation='source-over';
-        ctx.globalAlpha=b.a*wav;ctx.fillStyle='rgba(111,211,194,1)';
-        ctx.beginPath();ctx.arc(cx,cy,12*p*wav,0,Math.PI*2);ctx.fill();
-        ctx.globalAlpha=1;
-      });
-      requestAnimationFrame(draw);
-    }
-    draw();
-  </script>
+      if(el.type==='checkbox'){el.checked=false}else{el.value=''}
+    });
+    document.getElementById('outWrap').style.display='none';
+    ['fname','enPrompt','jpPrompt','ytTitle','tags'].forEach(id=>document.getElementById(id).value='');
+  }
+  async function copyText(id){
+    const el=document.getElementById(id);
+    try{
+      await navigator.clipboard.writeText(el.value);
+      const btn=document.querySelector(`button[onclick="copyText('${id}')"]`);
+      const old=btn.textContent; btn.textContent='✅ Copied!'; setTimeout(()=>btn.textContent=old, 1200);
+    }catch(e){ alert('コピーに失敗しました'); }
+  }
+</script>
 </body>
 </html>
